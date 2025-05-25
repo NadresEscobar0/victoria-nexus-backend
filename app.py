@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import re
+import os
 
 app = Flask(__name__)
 
@@ -48,4 +49,5 @@ def consulta():
         return jsonify({"respuesta": f"Error al generar respuesta: {e}"})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
